@@ -10,6 +10,16 @@
     </div>
   </div>
 
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+  <div class="alert alert-{{ category }}" role="alert">
+    {{ message }}
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
   <div class="row">
     <div class="col-12 mb-3" align="right">
       <button data-toggle="modal" data-target="#addContactModal" class="btn btn-success">Add Contact</button>
@@ -26,15 +36,17 @@
           </tr>
         </thead>
         <tbody>
+          {% for contact in contacts_data %}
           <tr>
-            <td id="contactName-id">LordGhostX</td>
-            <td id="contactEmail-id">hi@lordghostx.com</td>
-            <td id="contactPhone-id">+1 (234) 567-8900</td>
-            <td id="contactJob-id">Ambassador @ Auth0</td>
+            <td id="contactName-{{ contact.contact_id }}">{{ contact.name }}</td>
+            <td id="contactEmail-{{ contact.contact_id }}">{{ contact.email }}</td>
+            <td id="contactPhone-{{ contact.contact_id }}">{{ contact.phone }}</td>
+            <td id="contactJob-{{ contact.contact_id }}">{{ contact.job }}</td>
             <td>
-              <button class="btn btn-primary" data-toggle="modal" data-target="#contactModal" onclick="displayContactInfo('id')">View Details</button>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#contactModal" onclick="displayContactInfo('{{ contact.contact_id }}')">View Details</button>
             </td>
           </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
@@ -136,24 +148,24 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="name">Contact Name</label>
-              <input type="text" class="form-control" name="name">
+              <input type="text" class="form-control" name="name" required>
             </div>
             <div class="form-group">
               <label for="job">Job Title & Company</label>
-              <input type="text" class="form-control" name="job">
+              <input type="text" class="form-control" name="job" required>
             </div>
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" class="form-control" name="email">
+              <input type="email" class="form-control" name="email" required>
             </div>
             <div class="form-group">
               <label for="phone">Phone Number</label>
-              <input type="text" class="form-control" name="phone">
+              <input type="text" class="form-control" name="phone" required>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button class="btn btn-primary">Add Contact</button>
+            <button class="btn btn-primary" type="submit" name="action" value="addContact">Add Contact</button>
           </div>
         </form>
       </div>
