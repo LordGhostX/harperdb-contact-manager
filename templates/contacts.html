@@ -57,7 +57,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button data-toggle="modal" data-dismiss="modal" data-target="#updateContactModal" class="btn btn-primary">Update</button>
+          <button data-toggle="modal" data-dismiss="modal" data-target="#updateContactModal" class="btn btn-primary" id="updateTrigger">Update</button>
           <a href="#" class="btn btn-danger">Delete</a>
         </div>
       </div>
@@ -104,17 +104,5 @@
   </div>
 </div>
 
-<script>
-  function displayContactInfo(contactID) {
-    let contactName = document.getElementById("contactName-" + contactID).innerHTML;
-    let contactPhone = "Phone Number: " + document.getElementById("contactPhone-" + contactID).innerHTML;
-    let contactEmail = "Email: " + document.getElementById("contactEmail-" + contactID).innerHTML;
-    let contactJob = "Job Title & Company: " + document.getElementById("contactJob-" + contactID).innerHTML;
-
-    document.getElementById("contactModalLabel").innerHTML = contactName;
-    document.getElementById("contactModalPhone").innerHTML = contactPhone;
-    document.getElementById("contactModalEmail").innerHTML = contactEmail;
-    document.getElementById("contactModalJob").innerHTML = contactJob;
-  }
-</script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 {% endblock %}
