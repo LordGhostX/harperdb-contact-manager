@@ -58,7 +58,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button data-toggle="modal" data-dismiss="modal" data-target="#updateContactModal" class="btn btn-primary" id="updateTrigger">Update</button>
-          <a href="#" class="btn btn-danger">Delete</a>
+          <button data-toggle="modal" data-dismiss="modal" data-target="#deleteContactModal" class="btn btn-danger">Delete</button>
         </div>
       </div>
     </div>
@@ -99,6 +99,21 @@
             <button class="btn btn-primary">Save Changes</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Contact Modal -->
+  <div class="modal fade" id="deleteContactModal" tabindex="-1" role="dialog" aria-labelledby="deleteContactModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteContactModalLabel">Are you sure you want to delete this contact?</h5>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-danger" id="deleteButton">YES</a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+        </div>
       </div>
     </div>
   </div>
