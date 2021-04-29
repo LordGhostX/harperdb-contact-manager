@@ -6,9 +6,9 @@ app = Flask(__name__)
 Bootstrap(app)
 app.config["SECRET_KEY"] = "SECRET_KEY"
 db = harperdb.HarperDB(
-    url="https://cloud-1-lordghostx.harperdbcloud.com",
-    username="lordghostx",
-    password="lordghostx"
+    url="HARPERDB_URL",
+    username="HARPERDB_USERNAME",
+    password="HARPERDB_PASSWORD"
 )
 
 
@@ -41,6 +41,13 @@ def contacts():
     contacts_data = db.sql(
         "SELECT * FROM contacts_repo.contacts ORDER BY name")
     return render_template("contacts.html", contacts_data=contacts_data)
+
+
+@app.route("/contacts/delete/<string:contact_id>")
+def delete_contact(contact_id):
+    db.delete("contacts_repo", "contacts", [contact_id])
+    flash("Successfully deleted contact information", "success")
+    return redirect(url_for("contacts"))
 
 
 if __name__ == "__main__":
