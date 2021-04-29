@@ -24,12 +24,12 @@
         </thead>
         <tbody>
           <tr>
-            <td>LordGhostX</td>
-            <td>hi@lordghostx.com</td>
-            <td>+1 (234) 567-8900</td>
-            <td>Ambassador @ Auth0</td>
+            <td id="contactName-id">LordGhostX</td>
+            <td id="contactEmail-id">hi@lordghostx.com</td>
+            <td id="contactPhone-id">+1 (234) 567-8900</td>
+            <td id="contactJob-id">Ambassador @ Auth0</td>
             <td>
-              <button class="btn btn-primary" data-toggle="modal" data-target="#contactModal">View Details</button>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#contactModal" onclick="displayContactInfo('id')">View Details</button>
             </td>
           </tr>
         </tbody>
@@ -42,7 +42,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="contactModalLabel">LordGhostX</h5>
+          <h5 class="modal-title" id="contactModalLabel"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -50,9 +50,9 @@
         <div class="modal-body">
           <p>Contact Details</p>
           <ul>
-            <li>Phone Number: +1 (234) 567-8900</li>
-            <li>Email: hi@lordghostx.com</li>
-            <li>Job Title & Company: Ambassador @ Auth0</li>
+            <li id="contactModalPhone"></li>
+            <li id="contactModalEmail"></li>
+            <li id="contactModalJob"></li>
           </ul>
         </div>
         <div class="modal-footer">
@@ -77,25 +77,13 @@
 
         <form method="POST">
           <div class="modal-body">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName">
-              </div>
+            <div class="form-group">
+              <label for="name">Contact Name</label>
+              <input type="text" class="form-control" id="name">
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="company">Company</label>
-                <input type="text" class="form-control" id="company">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="jobTitle">Job Title</label>
-                <input type="text" class="form-control" id="jobTitle">
-              </div>
+            <div class="form-group">
+              <label for="job">Job Title & Company</label>
+              <input type="text" class="form-control" id="job">
             </div>
             <div class="form-group">
               <label for="email">Email Address</label>
@@ -115,4 +103,18 @@
     </div>
   </div>
 </div>
+
+<script>
+  function displayContactInfo(contactID) {
+    let contactName = document.getElementById("contactName-" + contactID).innerHTML;
+    let contactPhone = "Phone Number: " + document.getElementById("contactPhone-" + contactID).innerHTML;
+    let contactEmail = "Email: " + document.getElementById("contactEmail-" + contactID).innerHTML;
+    let contactJob = "Job Title & Company: " + document.getElementById("contactJob-" + contactID).innerHTML;
+
+    document.getElementById("contactModalLabel").innerHTML = contactName;
+    document.getElementById("contactModalPhone").innerHTML = contactPhone;
+    document.getElementById("contactModalEmail").innerHTML = contactEmail;
+    document.getElementById("contactModalJob").innerHTML = contactJob;
+  }
+</script>
 {% endblock %}
