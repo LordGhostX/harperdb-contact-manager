@@ -34,7 +34,8 @@ def contacts():
             flash("Successfully added new contact", "success")
             return redirect(url_for("contacts"))
 
-    contacts_data = db.sql("SELECT * FROM contacts_repo.contacts")
+    contacts_data = db.sql(
+        "SELECT * FROM contacts_repo.contacts ORDER BY name")
     return render_template("contacts.html", contacts_data=contacts_data)
 
 
