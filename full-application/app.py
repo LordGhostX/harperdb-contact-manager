@@ -21,18 +21,22 @@ def index():
 def contacts():
     if request.method == "POST":
         action = request.form.get("action")
+        contact_data = {
+            "name": request.form.get("name", "").strip(),
+            "job": request.form.get("job", "").strip(),
+            "email": request.form.get("email", "").strip(),
+            "phone": request.form.get("phone", "").strip()
+        }
 
         if action == "addContact":
-            contact_data = {
-                "name": request.form.get("name").strip(),
-                "job": request.form.get("job").strip(),
-                "email": request.form.get("email").strip(),
-                "phone": request.form.get("phone").strip()
-            }
             db.insert("contacts_repo", "contacts", [contact_data])
-
             flash("Successfully added new contact", "success")
-            return redirect(url_for("contacts"))
+        if action == "updateContact":
+            contact_data["contact_id"] = request.form.get("contactID")
+            db.update("contacts_repo", "contacts", [contact_data])
+            flash("Successfully updated contact information", "success")
+
+        return redirect(url_for("contacts"))
 
     contacts_data = db.sql(
         "SELECT * FROM contacts_repo.contacts ORDER BY name")

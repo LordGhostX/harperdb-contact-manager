@@ -25,6 +25,7 @@ function displayContactInfo(contactID) {
 function prefillUpdateForm(contactID) {
   let contactInfo = getContactInfo(contactID);
 
+  document.getElementById("contact_id").value = contactID;
   document.getElementById("name").value = contactInfo.name;
   document.getElementById("job").value = contactInfo.job;
   document.getElementById("email").value = contactInfo.email;

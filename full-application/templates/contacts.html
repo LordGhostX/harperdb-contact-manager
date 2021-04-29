@@ -94,24 +94,25 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="name">Contact Name</label>
-              <input type="text" class="form-control" id="name" name="name">
+              <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="form-group">
               <label for="job">Job Title & Company</label>
-              <input type="text" class="form-control" id="job" name="job">
+              <input type="text" class="form-control" id="job" name="job" required>
             </div>
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" class="form-control" id="email" name="email">
+              <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="form-group">
               <label for="phone">Phone Number</label>
-              <input type="text" class="form-control" id="phone" name="phone">
+              <input type="text" class="form-control" id="phone" name="phone" required>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button class="btn btn-primary">Save Changes</button>
+            <input type="hidden" name="contactID" id="contact_id">
+            <button class="btn btn-primary" type="submit" name="action" value="updateContact">Save Changes</button>
           </div>
         </form>
       </div>
