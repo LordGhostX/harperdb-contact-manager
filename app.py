@@ -12,7 +12,7 @@ def index():
 
 @app.route("/contacts/")
 def contacts():
-    return "Contacts Page!"
+    return render_template("contacts.html")
 
 
 if __name__ == "__main__":
