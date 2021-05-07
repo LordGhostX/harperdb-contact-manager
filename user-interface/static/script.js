@@ -19,12 +19,13 @@ function displayContactInfo(contactID) {
   document.getElementById("contactModalJob").innerHTML = contactJob;
 
   document.getElementById("updateTrigger").addEventListener("click", prefillUpdateForm(contactID));
-  document.getElementById("deleteButton").href = contactID;
+  document.getElementById("deleteButton").href = "/contacts/delete/" + contactID;
 }
 
 function prefillUpdateForm(contactID) {
   let contactInfo = getContactInfo(contactID);
 
+  document.getElementById("contact_id").value = contactID;
   document.getElementById("name").value = contactInfo.name;
   document.getElementById("job").value = contactInfo.job;
   document.getElementById("email").value = contactInfo.email;
